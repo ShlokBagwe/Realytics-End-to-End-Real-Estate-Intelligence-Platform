@@ -23,6 +23,7 @@ def load_model2():
 
 
 # Recommender System
+@st.cache_data
 def load_recommender_data():
     return pd.read_csv(BASE_DIR / "Final RS Dataset.csv")
 

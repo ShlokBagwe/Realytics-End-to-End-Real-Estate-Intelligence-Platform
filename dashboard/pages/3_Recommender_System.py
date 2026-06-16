@@ -106,9 +106,9 @@ with col2:
 
     min_val, max_val = st.slider(
         label="Price Range",
-        min_value=new_df["Price"].min(), 
+        min_value=float(new_df["Price"].min()),
         max_value=float(new_df["Price"].max()),
-        value=(new_df["Price"].min(), float(new_df["Price"].max())), 
+        value=(float(new_df["Price"].min()), float(new_df["Price"].max())),
         step=0.2
     )
 
