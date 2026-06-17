@@ -1,7 +1,22 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from utils import load_recommender_data, load_recommender_model, load_recommender_matrix
+import joblib
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+
+@st.cache_data
+def load_recommender_data():
+    return pd.read_csv(BASE_DIR.parent / "Final RS Dataset.csv")
+
+@st.cache_resource
+def load_recommender_model():
+    return joblib.load(BASE_DIR.parent / "latest_weighted_nn_model.joblib")
+
+@st.cache_resource
+def load_recommender_matrix():
+    return joblib.load(BASE_DIR.parent / "latest_X_weighted_matrix.joblib")
 
 st.set_page_config(
     page_title="Mumbai Real Estate — Price Prediction",

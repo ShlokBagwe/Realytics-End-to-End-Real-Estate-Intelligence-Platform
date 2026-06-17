@@ -1,7 +1,18 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from utils import load_data, load_model
+import joblib
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+
+@st.cache_data
+def load_data():
+    return pd.read_csv(BASE_DIR.parent / "cord_real_estate.csv")
+
+@st.cache_resource
+def load_model():
+    return joblib.load(BASE_DIR.parent / "best_xgb_model_v2.joblib")
 
 st.set_page_config(
     page_title="Mumbai Real Estate — Price Prediction",

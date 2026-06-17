@@ -1,6 +1,14 @@
 import streamlit as st
+import pandas as pd
+import joblib
 import plotly.express as px
-from utils import load_data
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+
+@st.cache_data
+def load_data():
+    return pd.read_csv(BASE_DIR.parent / "cord_real_estate.csv")
 
 
 st.set_page_config(

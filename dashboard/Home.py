@@ -1,5 +1,13 @@
 import streamlit as st
-from utils import load_data
+import pandas as pd
+import joblib
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent
+
+@st.cache_data
+def load_data():
+    return pd.read_csv(BASE_DIR / "cord_real_estate.csv")
 
 
 st.set_page_config(
